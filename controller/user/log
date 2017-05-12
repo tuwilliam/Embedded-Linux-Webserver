@@ -1,0 +1,290 @@
+In file included from /home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:4:0,
+                 from /home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/module.h:9,
+                 from webhello.c:2:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/types.h:13:2: warning: #warning "Attempt to use kernel headers from user space, see http://kernelnewbies.org/KernelHeaders" [-Wcpp]
+In file included from /home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/module.h:9:0,
+                 from webhello.c:2:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:24:42: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:24:42: warning: its scope is only this definition or declaration, which is probably not what you want [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'INIT_LIST_HEAD':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:26:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:27:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:39:17: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function '__list_add':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:41:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:42:5: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:43:5: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:44:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:60:59: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_add':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:62:28: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:62:2: warning: passing argument 1 of '__list_add' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:37:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:62:2: warning: passing argument 2 of '__list_add' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:37:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:74:64: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_add_tail':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:76:22: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:76:2: warning: passing argument 1 of '__list_add' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:37:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:76:2: warning: passing argument 3 of '__list_add' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:37:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:86:63: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function '__list_del':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:88:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:89:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:99:44: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function '__list_del_entry':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:101:18: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:101:31: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:104:36: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_del':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:106:18: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:106:31: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:107:7: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:108:7: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:123:12: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_replace':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:125:5: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:125:17: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:126:5: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:127:5: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:127:17: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:128:5: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:132:13: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_replace_init':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:134:2: warning: passing argument 1 of 'list_replace' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:122:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:134:2: warning: passing argument 2 of 'list_replace' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:122:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:135:2: warning: passing argument 1 of 'INIT_LIST_HEAD' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:24:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:142:41: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_del_init':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:144:2: warning: passing argument 1 of '__list_del_entry' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:99:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:145:2: warning: passing argument 1 of 'INIT_LIST_HEAD' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:24:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:153:61: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_move':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:155:2: warning: passing argument 1 of '__list_del_entry' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:99:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:156:2: warning: passing argument 1 of 'list_add' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:60:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:156:2: warning: passing argument 2 of 'list_add' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:60:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:165:14: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_move_tail':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:167:2: warning: passing argument 1 of '__list_del_entry' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:99:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:168:2: warning: passing argument 1 of 'list_add_tail' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:74:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:168:2: warning: passing argument 2 of 'list_add_tail' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:74:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:177:18: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_is_last':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:179:13: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:186:43: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_empty':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:188:13: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:204:51: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_empty_careful':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:206:31: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:207:40: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:214:44: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_rotate_left':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:218:2: warning: passing argument 1 of 'list_empty' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:186:19: note: expected 'const struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:219:15: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:220:3: warning: passing argument 1 of 'list_move_tail' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:164:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:220:3: warning: passing argument 2 of 'list_move_tail' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:164:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:228:49: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_is_singular':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:230:2: warning: passing argument 1 of 'list_empty' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:186:19: note: expected 'const struct list_head *' but argument is of type 'const struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:230:35: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:230:49: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:234:34: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function '__list_cut_position':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:236:37: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:237:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:237:19: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:238:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:239:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:240:7: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:241:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:242:11: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:260:34: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_cut_position':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:262:2: warning: passing argument 1 of 'list_empty' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:186:19: note: expected 'const struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:264:2: warning: passing argument 1 of 'list_is_singular' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:228:19: note: expected 'const struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:265:8: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:268:3: warning: passing argument 1 of 'INIT_LIST_HEAD' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:24:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:270:3: warning: passing argument 1 of '__list_cut_position' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:233:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:270:3: warning: passing argument 2 of '__list_cut_position' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:233:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:270:3: warning: passing argument 3 of '__list_cut_position' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:233:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:275:13: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function '__list_splice':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:277:32: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:278:31: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:280:7: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:281:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:283:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:284:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:293:12: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_splice':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:295:2: warning: passing argument 1 of 'list_empty' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:186:19: note: expected 'const struct list_head *' but argument is of type 'const struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:296:33: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:296:3: warning: passing argument 1 of '__list_splice' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:273:20: note: expected 'const struct list_head *' but argument is of type 'const struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:296:3: warning: passing argument 2 of '__list_splice' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:273:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:305:12: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_splice_tail':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:307:2: warning: passing argument 1 of 'list_empty' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:186:19: note: expected 'const struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:308:27: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:308:3: warning: passing argument 1 of '__list_splice' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:273:20: note: expected 'const struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:308:3: warning: passing argument 3 of '__list_splice' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:273:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:319:16: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_splice_init':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:321:2: warning: passing argument 1 of 'list_empty' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:186:19: note: expected 'const struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:322:33: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:322:3: warning: passing argument 1 of '__list_splice' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:273:20: note: expected 'const struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:322:3: warning: passing argument 2 of '__list_splice' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:273:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:323:3: warning: passing argument 1 of 'INIT_LIST_HEAD' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:24:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:336:14: warning: 'struct list_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'list_splice_tail_init':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:338:2: warning: passing argument 1 of 'list_empty' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:186:19: note: expected 'const struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:339:27: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:339:3: warning: passing argument 1 of '__list_splice' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:273:20: note: expected 'const struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:339:3: warning: passing argument 3 of '__list_splice' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:273:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:340:3: warning: passing argument 1 of 'INIT_LIST_HEAD' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:24:20: note: expected 'struct list_head *' but argument is of type 'struct list_head *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:570:43: warning: 'struct hlist_node' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'INIT_HLIST_NODE':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:572:3: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:573:3: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:576:47: warning: 'struct hlist_node' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'hlist_unhashed':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:578:11: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:581:44: warning: 'struct hlist_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'hlist_empty':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:583:11: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:586:39: warning: 'struct hlist_node' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function '__hlist_del':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:588:29: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:589:31: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:592:7: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:595:37: warning: 'struct hlist_node' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'hlist_del':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:597:2: warning: passing argument 1 of '__hlist_del' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:586:20: note: expected 'struct hlist_node *' but argument is of type 'struct hlist_node *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:598:3: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:599:3: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:602:42: warning: 'struct hlist_node' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'hlist_del_init':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:604:2: warning: passing argument 1 of 'hlist_unhashed' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:576:19: note: expected 'const struct hlist_node *' but argument is of type 'struct hlist_node *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:605:3: warning: passing argument 1 of '__hlist_del' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:586:20: note: expected 'struct hlist_node *' but argument is of type 'struct hlist_node *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:606:3: warning: passing argument 1 of 'INIT_HLIST_NODE' from incompatible pointer type [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:570:20: note: expected 'struct hlist_node *' but argument is of type 'struct hlist_node *'
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:610:64: warning: 'struct hlist_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:610:64: warning: 'struct hlist_node' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'hlist_add_head':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:612:30: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:613:3: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:615:8: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:615:20: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:616:3: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:617:3: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:617:15: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:622:13: warning: 'struct hlist_node' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'hlist_add_before':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:624:3: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:624:17: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:625:3: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:626:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:626:18: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:627:5: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:631:13: warning: 'struct hlist_node' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'hlist_add_after':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:633:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:633:16: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:634:3: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:635:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:635:18: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:637:9: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:638:7: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:638:29: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:642:42: warning: 'struct hlist_node' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'hlist_add_fake':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:644:3: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:644:15: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:652:15: warning: 'struct hlist_head' declared inside parameter list [enabled by default]
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h: In function 'hlist_move_list':
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:654:5: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:654:18: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:655:9: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:656:6: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:656:27: error: dereferencing pointer to incomplete type
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/list.h:657:5: error: dereferencing pointer to incomplete type
+In file included from /home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/module.h:12:0,
+                 from webhello.c:2:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/cache.h: At top level:
+/home/jay/my-imx6/02_source/imx_3.0.35_4.1.0/linux-2.6-imx-imx_3.0.35_4.1.0/include/linux/cache.h:5:23: fatal error: asm/cache.h: No such file or directory
+compilation terminated.
+make: *** [webhello] Error 1

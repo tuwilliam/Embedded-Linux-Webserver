@@ -1,0 +1,4 @@
+make clean
+make
+cp sqlitetest /mnt/hgfs/share
+

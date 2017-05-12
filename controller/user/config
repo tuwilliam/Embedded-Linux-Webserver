@@ -1,0 +1,4 @@
+make clean
+make
+cp user /mnt/hgfs/share
+
