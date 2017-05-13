@@ -1,3 +1,4 @@
+cp -f /mnt/hgfs/share/code/controller/user/user.c .
 make clean
 make
 cp user /mnt/hgfs/share

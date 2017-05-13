@@ -3,5 +3,7 @@
 #include <string.h>
 #include "cJSON.h"
 #include "sqlite3.h"
+#include "userdata.h"
+
 char* getCgiData(FILE* fp, char* method);
 char* getCharPos(char* scr, char* search, int pos);

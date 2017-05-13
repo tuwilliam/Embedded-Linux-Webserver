@@ -12,37 +12,55 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColusername){
    return 0;
 }
 
-void tableCreate(sqlite3* db,  int  rc, char* tabelusername){
-    // char* sql = "CREATE TABLE ";
-    // int n = snprintf(sql, 500, "%s%s%s", sql, tabelusername, "("  \
-    //      "ID INT PRIMARY KEY     NOT NULL," \
-    //      "username           TEXT    NOT NULL," \
-    //      "pwd            TEXT     NOT NULL," \
-    //      "ACCESS         INT);");
+void tableCreate_user_access(sqlite3* db,  int  rc){
+
+  char* sql = malloc(200);
+  memset(sql, 0, 200);
   char* zErrMsg = 0;
-  char* sql = "CREATE TABLE user_access("  \
+  strcat(sql, "CREATE TABLE user_access("  \
          "ID INT PRIMARY KEY     NOT NULL," \
          "username           TEXT    NOT NULL," \
          "pwd            TEXT     NOT NULL," \
-         "ACCESS         INT);";
+         "ACCESS         INT);");
    /* Execute SQL statement */
    rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
    if( rc != SQLITE_OK ){
-   fprintf(stderr, "SQL error: %s\n", zErrMsg);
+   fprintf(stderr, "user_access SQL error: %s\n", zErrMsg);
       sqlite3_free(zErrMsg);
    }else{
-      fprintf(stdout, "Table created successfully\n");
+      fprintf(stdout, "Table user_access created successfully\n");
    }
+   free(sql);
+   sql = NULL;
+}
+
+void tableCreate_session(sqlite3* db,  int  rc){
+
+  char* sql = malloc(500);
+  memset(sql, 0, 500);
+  char* zErrMsg = 0;
+  strcat(sql, "CREATE TABLE session("  \
+         "ID INT PRIMARY KEY     NOT NULL," \
+         "token           TEXT    NOT NULL," \
+         "user_access_id INT NOT NULL," \
+         "time            TEXT NOT NULL,"\
+         "FOREIGN KEY ( user_access_id ) REFERENCES user_access_( user_access_id ));");
+   /* Execute SQL statement */
+   rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+   if( rc != SQLITE_OK ){
+   fprintf(stderr, "session SQL creat error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+   }else{
+      fprintf(stdout, "Table session created successfully\n");
+   }
+   free(sql);
+   sql = NULL;
 }
 
 void tableDrop(sqlite3* db,  int  rc, char* tabelusername){
-  // char* sql = "DROP TABLE ";
 
-  //int n = snprintf(sql, 100, "%s%s%s", sql, tabelusername, ";");
-  // char* sql = "DROP TABLE user_access; ";
-  // char* sql = "DROP TABLE ";
-  char sql[100] = {0};
-  //memset(sql, 100 ,0);
+  char* sql = malloc(100);
+  memset(sql, 0, 100);
   strcat(sql, "DROP TABLE ");
   strcat(sql, tabelusername);
   strcat(sql, ";");
@@ -50,43 +68,49 @@ void tableDrop(sqlite3* db,  int  rc, char* tabelusername){
 
   rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
   if( rc != SQLITE_OK ){
-   fprintf(stderr, "SQL error: %s\n", zErrMsg);
+   fprintf(stderr, "%s SQL drop error: %s\n", tabelusername, zErrMsg);
       sqlite3_free(zErrMsg);
    }else{
       fprintf(stdout, "Table user_access Drop successfully\n");
    }
+   free(sql);
+   sql = NULL;
 }
 
-void rowInsert(sqlite3* db,  int  rc){
-
-    char* sql = "INSERT INTO user_access (ID,username,pwd,ACCESS) "  \
-         "VALUES (1, 'root', 'lab555', 0); " \
-         "INSERT INTO user_access (ID,username,pwd,ACCESS) "  \
-         "VALUES (2, 'userLevel1', 'lab555', 1); " \
-         "INSERT INTO user_access (ID,username,pwd,ACCESS) "  \
-         "VALUES (3, 'userLevel2', 'lab555', 2); " \
-         "INSERT INTO user_access (ID,username,pwd,ACCESS) "  \
-         "VALUES (4, 'userLevel3', 'lab555', 3);" \
-         "INSERT INTO user_access (ID,username,pwd,ACCESS) "  \
-         "VALUES (5, 'userLevel4', 'lab555', 4);" \
-         "INSERT INTO user_access (ID,username,pwd,ACCESS) "  \
-         "VALUES (6, 'userLevel5', 'lab555', 5);";
-    char* zErrMsg = 0;
-
-   /* Execute SQL statement */
-   rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
-   if( rc != SQLITE_OK ){
-      fprintf(stderr, "SQL error: %s\n", zErrMsg);
-      sqlite3_free(zErrMsg);
-   }else{
-      fprintf(stdout, "Records Insert successfully\n");
-   }
+void rowInsert_user_access(sqlite3* db,  int  rc){
+  char* sql = malloc(1000);
+  memset(sql, 0, 1000);
+  strcat(sql,"INSERT INTO user_access (ID,username,pwd,ACCESS) "  \
+       "VALUES (1, 'root', 'lab555', 0); " \
+       "INSERT INTO user_access (ID,username,pwd,ACCESS) "  \
+       "VALUES (2, 'userLevel1', 'lab555', 1); " \
+       "INSERT INTO user_access (ID,username,pwd,ACCESS) "  \
+       "VALUES (3, 'userLevel2', 'lab555', 2); " \
+       "INSERT INTO user_access (ID,username,pwd,ACCESS) "  \
+       "VALUES (4, 'userLevel3', 'lab555', 3);" \
+       "INSERT INTO user_access (ID,username,pwd,ACCESS) "  \
+       "VALUES (5, 'userLevel4', 'lab555', 4);" \
+       "INSERT INTO user_access (ID,username,pwd,ACCESS) "  \
+       "VALUES (6, 'userLevel5', 'lab555', 5);");
+  char* zErrMsg = 0;
+  /* Execute SQL statement */
+  rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+  if( rc != SQLITE_OK ){
+    fprintf(stderr, "user_access SQL error: %s\n", zErrMsg);
+    sqlite3_free(zErrMsg);
+  }else{
+    fprintf(stdout, "user_access Records Insert successfully\n");
+  }
+  free(sql);
+  sql = NULL;
 }
 
 void tableInit(sqlite3* db,  int  rc){
     tableDrop(db, rc, "user_access");
-    tableCreate(db, rc, "user_access");
-    rowInsert(db, rc);
+    tableDrop(db, rc, "session");
+    tableCreate_user_access(db, rc);
+    rowInsert_user_access(db, rc);
+    tableCreate_session(db, rc);
 }
 
 int main(int argc, char* argv[])
@@ -108,25 +132,7 @@ int main(int argc, char* argv[])
    }
 
    tableInit(db, rc);
-   // /* Open database */
-   // if(argc){
 
-   //    if(argv[0] == "init" || argv[0] == "INIT"){
-   //        tableInit();
-   //        return 0;         
-   //    }  
-
-   //    if(argv[0] == "drop" || argv[0] == "DROP"){
-   //        tableDrop(db, rc, argv[1]);
-   //        return 0;         
-   //    }
-
-
-   //    if(argv[0] == "insert" || argv[0] == "INSERT"){
-   //        tableInsert(db, rc);
-   //        return 0;
-   //    }
-   // }
    sqlite3_close(db);
    return 0;
 }

@@ -1,3 +1,4 @@
+cp -f /mnt/hgfs/share/code/sqlitetest/sqlitetest.c .
 make clean
 make
 cp sqlitetest /mnt/hgfs/share

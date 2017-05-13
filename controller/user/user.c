@@ -1,30 +1,10 @@
 #include "../../common/common.h"
 
-void getjSON(char* input, char* username, char* pwd){
-
-    cJSON *json , *usernameJSON , *pwdJSON; 
-
-    // 
-    json = cJSON_Parse(input);  
-
-    if (!json)  
-    {  
-        printf("Error before: [%s]\n",cJSON_GetErrorPtr());  
-    }  
-    else  
-    {  
-        usernameJSON = cJSON_GetObjectItem( json , "username");  
-        strcpy(username,usernameJSON -> valuestring);
-        pwdJSON = cJSON_GetObjectItem( json , "pwd");  
-		strcpy(pwd,pwdJSON -> valuestring);
-        cJSON_Delete(json);  
-    }  
-}
-
 static int callback(void *data, int argc, char **argv, char **azColName){
 
     if(strcmp(argv[2], data) == 0){
-        printf("Success!\n");
+        //makeSession(argv[0]);
+        printf("%s\n", makeJSON());
         exit(1);
     }
     else{
@@ -35,63 +15,81 @@ static int callback(void *data, int argc, char **argv, char **azColName){
     return 0;
 }
 
-
 int main(void)
 {
-	char* input;
-	char* method;
+	char* input = malloc(100);
+    char* sql = malloc(100);
+
+    userData newuser;
+    newuser.username = malloc(100);
+    newuser.pwd = malloc(100);
+
+    memset(input, 0, 100);
+    memset(sql, 0, 100);
+    memset(newuser.username, 0, 100);
+    memset(newuser.pwd, 0, 100);
+
+    char* method;
     char* uri;
-    char username[100] = {0};
-    char pwd[100] = {0};
-
-
-
-    char* temp;
-    int i;
-
-
+    // char username[100] = {0};
+    // char pwd[100] = {0};
     sqlite3* db;
     char* zErrMsg = 0;
     int  rc;
-    char sql[100] = {0};
+    
 
 	
     printf("Content-type:text/html\n\n");
-    input = malloc(100);
     
     method = getenv("REQUEST_METHOD");
+    uri = getenv("REQUEST_URI");
     input = getCgiData(stdin, method);
 
-    uri = getenv("REQUEST_URI");
 
     char* subRouter = getCharPos(uri, "/", 4);
 
     rc = sqlite3_open("../model/netgap.db", &db);
     if(rc){
-      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-      sqlite3_close(db);
-      exit(1);
+        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        sqlite3_close(db);
+        free(input);
+        free(sql);
+        free(newuser.username);
+        free(newuser.pwd);
+        input = NULL;
+        sql = NULL;
+        newuser.username = NULL;
+        newuser.pwd = NULL;
+        exit(1);
     }
     
     if(strcmp(subRouter, "login") == 0){
 
-        getjSON(input, username, pwd);
+        getjSON(input, newuser.username, newuser.pwd);
  
         strcat(sql, "SELECT * FROM user_access WHERE username=\"");
-        strcat(sql, username);
+        strcat(sql, newuser.username);
         strcat(sql, "\";");
 
-        rc = sqlite3_exec(db, sql, callback, pwd, &zErrMsg);
+        rc = sqlite3_exec(db, sql, callback, newuser.pwd, &zErrMsg);
 
         if( rc != SQLITE_OK ){
           fprintf(stderr, "SQL error: %s\n", zErrMsg);
           sqlite3_free(zErrMsg);
         }else{
-          fprintf(stdout, "Incorrect Username\n");
+          fprintf(stdout, "Incorrect Username!\n");
         }
 
     } 
 
     sqlite3_close(db);
+    free(input);
+    free(sql);
+    free(newuser.username);
+    free(newuser.pwd);
+    input = NULL;
+    sql = NULL;
+    newuser.username = NULL;
+    newuser.pwd = NULL;
 	return 0;
 }
