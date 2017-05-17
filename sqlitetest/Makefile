@@ -1,5 +1,7 @@
-all: sqlitetest 
-sqlitetest: sqlitetest.c sqlite3.h
-	$(CROSS_COMPILE)gcc -o sqlitetest sqlitetest.c -lsqlite3 -L/scrcode/sqlite/sqlite-arm/lib -I/scrcode/sqlite/sqlite-arm/include
+CFLAGS = -lsqlite3 -L/home/jay/work/sqlite-arm/lib -I/home/jay/work/sqlite-arm/include
+TARGET = sqlitetest
+
+$(TARGET): %:%.c
+	$(CROSS_COMPILE)gcc -o $(TARGET) $< $(CFLAGS)
 clean:
-	rm -f sqlitetest
+	rm -f $(TARGET)

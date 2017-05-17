@@ -1,17 +1,17 @@
 #include "../../common/common.h"
+//#include "stdio.h"
+char nameCheck = 0;
 
-static int callback(void *data, int argc, char **argv, char **azColName){
-
-    if(strcmp(argv[2], data) == 0){
-        //makeSession(argv[0]);
-        printf("%s\n", makeJSON());
-        exit(1);
+static int usernameCallback(void *pwd, int argc, char **argv, char **azColName)
+{
+    nameCheck = 1;
+    if(strcmp(argv[2], pwd) == 0){
+        getSessionID(argv[0], db, rc);
     }
     else{
-        printf("Incorrect Password!\n");
+        printf("%s\n", makeJSON("Incorrect Password!", "", ""));
         exit(1);
     }
-    
     return 0;
 }
 
@@ -31,14 +31,9 @@ int main(void)
 
     char* method;
     char* uri;
-    // char username[100] = {0};
-    // char pwd[100] = {0};
-    sqlite3* db;
-    char* zErrMsg = 0;
-    int  rc;
-    
 
-	
+    char* zErrMsg = 0;
+
     printf("Content-type:text/html\n\n");
     
     method = getenv("REQUEST_METHOD");
@@ -49,8 +44,9 @@ int main(void)
     char* subRouter = getCharPos(uri, "/", 4);
 
     rc = sqlite3_open("../model/netgap.db", &db);
+    //error when open DB
     if(rc){
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        printf("Can't open database: %s\n", sqlite3_errmsg(db));
         sqlite3_close(db);
         free(input);
         free(sql);
@@ -62,24 +58,26 @@ int main(void)
         newuser.pwd = NULL;
         exit(1);
     }
-    
-    if(strcmp(subRouter, "login") == 0){
 
+    if(strcmp(subRouter, "login") == 0){
         getjSON(input, newuser.username, newuser.pwd);
- 
+
         strcat(sql, "SELECT * FROM user_access WHERE username=\"");
         strcat(sql, newuser.username);
         strcat(sql, "\";");
 
-        rc = sqlite3_exec(db, sql, callback, newuser.pwd, &zErrMsg);
+        rc = sqlite3_exec(db, sql, usernameCallback, newuser.pwd, &zErrMsg);
 
         if( rc != SQLITE_OK ){
-          fprintf(stderr, "SQL error: %s\n", zErrMsg);
+          printf("SQL error: %s\n", zErrMsg);
           sqlite3_free(zErrMsg);
-        }else{
-          fprintf(stdout, "Incorrect Username!\n");
         }
 
+        if(!nameCheck){
+            printf("%s\n", makeJSON("Incorrect Username!", "", ""));
+        }else{
+            nameCheck = 0;
+        }
     } 
 
     sqlite3_close(db);

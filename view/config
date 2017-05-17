@@ -1,0 +1,6 @@
+cp /mnt/hgfs/share/code/view/view.c .
+source /home/jay/work/myimx6_3035_build_env
+make clean
+make
+cp view /mnt/hgfs/share
+scp view root@192.168.1.50:/var/www/cgi-bin

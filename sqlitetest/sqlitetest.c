@@ -40,7 +40,7 @@ void tableCreate_session(sqlite3* db,  int  rc){
   memset(sql, 0, 500);
   char* zErrMsg = 0;
   strcat(sql, "CREATE TABLE session("  \
-         "ID INT PRIMARY KEY     NOT NULL," \
+         "ID INTEGER PRIMARY KEY     AUTOINCREMENT," \
          "token           TEXT    NOT NULL," \
          "user_access_id INT NOT NULL," \
          "time            TEXT NOT NULL,"\
@@ -105,12 +105,64 @@ void rowInsert_user_access(sqlite3* db,  int  rc){
   sql = NULL;
 }
 
+void rowInsert_session(sqlite3* db,  int  rc){
+  char* sql = malloc(1000);
+  memset(sql, 0, 1000);
+  strcat(sql,"INSERT INTO session (ID,token,user_access_id,time) "  \
+       "VALUES (1, '12345678', '2', '20:00'); " );
+  char* zErrMsg = 0;
+  /* Execute SQL statement */
+  rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+  if( rc != SQLITE_OK ){
+    fprintf(stderr, "session SQL error: %s\n", zErrMsg);
+    sqlite3_free(zErrMsg);
+  }else{
+    fprintf(stdout, "session Records Insert successfully\n");
+  }
+  free(sql);
+  sql = NULL;
+}
+
+void tableUpdate_session(sqlite3* db,  int  rc){
+
+  char* sql = malloc(100);
+    memset(sql, 0, 100);
+
+    char* zErrMsg = 0;
+    strcat(sql, "UPDATE session SET token='98123543' WHERE ID=1;");
+    // strcat(sql, "UPDATE session SET token=\'");
+    // strcat(sql, tokenStr);
+    // strcat(sql, "\' WHERE ID=");
+    // strcat(sql, sessionID);
+    // strcat(sql, ";\n");
+    printf("%s\n", sql);
+    //rc = sqlite3_open("../model/netgap.db", &db);
+    rc = sqlite3_open("../model/netgap.db", &db);
+    printf("rc open = %d\n",rc);
+    if(rc){
+        printf("updateSession Can't open database: %s\n", sqlite3_errmsg(db));
+        exit(1);
+    }
+    rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg);
+    sqlite3_close(db);
+    printf("rc = %d\n",rc);
+    if( rc != SQLITE_OK ){
+        printf("updateSession error: %s\n", zErrMsg);
+        sqlite3_free(zErrMsg);
+    }else
+      fprintf(stdout, "session update successfully\n");
+
+    free(sql);
+}
+
 void tableInit(sqlite3* db,  int  rc){
     tableDrop(db, rc, "user_access");
     tableDrop(db, rc, "session");
     tableCreate_user_access(db, rc);
     rowInsert_user_access(db, rc);
     tableCreate_session(db, rc);
+    rowInsert_session(db, rc);
+    tableUpdate_session(db, rc);
 }
 
 int main(int argc, char* argv[])

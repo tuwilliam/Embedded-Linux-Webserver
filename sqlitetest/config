@@ -1,5 +1,6 @@
+source /home/jay/work/myimx6_3035_build_env
 cp -f /mnt/hgfs/share/code/sqlitetest/sqlitetest.c .
 make clean
 make
 cp sqlitetest /mnt/hgfs/share
-
+scp sqlitetest root@192.168.1.50:/var/www/cgi-bin/model
