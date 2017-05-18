@@ -3,6 +3,6 @@ TARGET = user
 INCLUDE = ../../common
 
 $(TARGET): %:%.c
-	$(CROSS_COMPILE)gcc -o $(TARGET) $< $(INCLUDE)/*.c $(CFLAGS)
+	$(CROSS_COMPILE)gcc -o $(TARGET) *.c  $(INCLUDE)/*.c $(CFLAGS)
 clean:
 	rm -f $(TARGET)

@@ -1,8 +1,7 @@
 #include "userdata.h"
 
-char sessionCheck = 0;
-
-
+/*Flag indicates if table session have the user_access_id*/
+char sessionCheckFlag = 0;
 
 void getjSON(char* input, char* username, char* pwd){
     cJSON *json , *usernameJSON , *pwdJSON; 
@@ -54,21 +53,35 @@ void makeToken(char* tokenStr)
     sprintf(tokenStr, "%d", rand() % 100000000);//1_0000_0000
 }
 
-static int getSessionIDCallback(void *tokenStr, int argc, char **argv, char **azColusername)
+/*
+*If find user_access_id in table session, enter callback, update session ID
+*@parameter pwd is the token string need to be updated
+*@parameter argc is the variable number
+*@parameter argv is the variable array(session_id, token, user_access_id, time)
+*@parameter azColusername is the variable name array("ID", "token", "user_access_id","time")
+*@author SUN ZHOGNJIAN
+*/
+static int checkUserSessionCallback(void *tokenStr, int argc, char **argv, char **azColusername)
 {
-    sessionCheck = 1;
-    updateSession(argv[0], tokenStr, db, rc);
-    printf("%s\n", makeJSON("success", tokenStr, argv[2]));
+    sessionCheckFlag = 1;
+    updateSession(argv[0], (char*)tokenStr, db);
+    printf("%s\n", makeJSON("success", (char*)tokenStr, argv[2]));
     return 0;
 }
 
-void getSessionID(char* user_access_id, sqlite3* db, int rc)
+/*
+*check if user_access_id is in table session ? (logged)update session : (never logged)make session
+*@parameter user_access_id is user_access_id
+*@parameter db is the netgap database
+*@author SUN ZHOGNJIAN
+*/
+void checkUserSession(char* user_access_id, sqlite3* db)
 {
-
-    char* sql = malloc(100);
-    memset(sql, 0, 100);
+    int rc;
     char* zErrMsg = 0;
-    char* sessionID = NULL;
+
+    char* sql = (char*)malloc(100);
+    memset(sql, 0, 100);
 
     char tokenStr[8];
     makeToken(tokenStr);
@@ -77,30 +90,30 @@ void getSessionID(char* user_access_id, sqlite3* db, int rc)
     strcat(sql, user_access_id);
     strcat(sql, ";");
 
-    rc = sqlite3_exec(db, sql, getSessionIDCallback, tokenStr, &zErrMsg);
+    rc = sqlite3_exec(db, sql, checkUserSessionCallback, tokenStr, &zErrMsg);
     
     if( rc != SQLITE_OK ){
       printf("session Table error: %s\n", zErrMsg);
       sqlite3_free(zErrMsg);
-      sessionID = NULL;
     }
 
-    if(!sessionCheck){
-        makeSession(user_access_id, tokenStr, db, rc);
+    if(!sessionCheckFlag){
+        makeSession(user_access_id, tokenStr, db);
         printf("%s\n", makeJSON("success", tokenStr, user_access_id));
     }
     else{
-        sessionCheck = 0;
+        sessionCheckFlag = 0;
     }
     free(sql);
 }
 
-void updateSession(char* sessionID, char* tokenStr, sqlite3* db, int rc)
+void updateSession(char* sessionID, char* tokenStr, sqlite3* db)
 {
-    char* sql = malloc(100);
-    memset(sql, 0, 100);
-
+    int rc;
     char* zErrMsg = 0;
+
+    char* sql = (char*)malloc(100);
+    memset(sql, 0, 100);
 
     time_t t;
     t=time(&t);
@@ -108,7 +121,7 @@ void updateSession(char* sessionID, char* tokenStr, sqlite3* db, int rc)
     strcat(sql, "UPDATE session SET token=\'");
     strcat(sql, tokenStr);
     strcat(sql, "\', time=\'");
-    strcat(sql, ctime(&t));
+    strcat(sql, (char*)ctime(&t));
     strcat(sql, "\' WHERE ID=");
     strcat(sql, sessionID);
     strcat(sql, ";");
@@ -121,23 +134,25 @@ void updateSession(char* sessionID, char* tokenStr, sqlite3* db, int rc)
     free(sql);
 }
 
-void makeSession(char* user_accessID, char* tokenStr, sqlite3* db, int rc)
+void makeSession(char* user_accessID, char* tokenStr, sqlite3* db)
 {
-    char* sql = malloc(1000);
+    int rc;
+    char* zErrMsg = 0;
+
+    char* sql = (char*)malloc(1000);
+    memset(sql, 0, 1000);
 
     time_t t;
     t=time(&t);
-
-    memset(sql, 0, 1000);
+    
     strcat(sql, "INSERT INTO session (token,user_access_id,time) VALUES ( \'");
     strcat(sql, tokenStr);
     strcat(sql, "\' , \'");
     strcat(sql, user_accessID);
     strcat(sql, "\' , \'");
-    strcat(sql, ctime(&t));
+    strcat(sql, (char*)ctime(&t));
     strcat(sql, "\');");
     
-    char* zErrMsg = 0;
     /* Execute SQL statement */
     rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg);
     if( rc != SQLITE_OK ){
