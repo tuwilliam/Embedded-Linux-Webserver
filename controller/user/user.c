@@ -14,14 +14,14 @@ char nameCheckFlag = 0;
 */
 static int usernameCallback(void *pwd, int argc, char **argv, char **azColName)
 {       
-    /*find username, Flag = 1*/
+    /*Find username, Flag = 1*/
     nameCheckFlag = 1;
-    /*password correct*/
+    /*Password correct*/
     if(strcmp(argv[2], pwd) == 0){
-        /*getSessionID, check if it has logged*/
+        /*GetSessionID, check if it has logged*/
         checkUserSession(argv[0], db);
     }
-    /*password incorrect*/
+    /*Password incorrect*/
     else{
         printf("%s\n", makeJSON("Incorrect Password!", "", ""));
         exit(1);
@@ -50,18 +50,18 @@ int main(void)
 
     printf("Content-type:text/html\n\n");
     
-    //get request method
+    //Get request method
     method = getenv("REQUEST_METHOD");    
-    //get request uri  
+    //Get request uri  
     uri = getenv("REQUEST_URI");
-    //get request content which should be a jSON string
+    //Get request content which should be a jSON string
     input = getCgiData(stdin, method);      
 
-    //get uri sub string after the fourth "/"
+    //Get uri sub string after the fourth "/"
     char* subRouter = getCharPos(uri, "/", 4);
 
     rc = sqlite3_open("../model/netgap.db", &db);
-    //error when open DB
+    //Error when open DB
     if(rc){
         printf("Can't open database: %s\n", sqlite3_errmsg(db));
         sqlite3_close(db);
@@ -75,24 +75,24 @@ int main(void)
         newuser.pwd = NULL;
         exit(1);
     }
-    //if it is login request
+    //If it is login request
     if(strcmp(subRouter, "login") == 0){
-        //get username and password from input jSON string
-        getjSON(input, newuser.username, newuser.pwd);
+        //Get username and password from input jSON string
+        getJSON(input, newuser.username, newuser.pwd);
 
-        //check if the username exist
+        //Check if the username exist
         strcat(sql, "SELECT * FROM user_access WHERE username=\"");
         strcat(sql, newuser.username);
         strcat(sql, "\";");
 
         rc = sqlite3_exec(db, sql, usernameCallback, newuser.pwd, &zErrMsg);
-        //when sql format is incorrect
+        //When sql format is incorrect
         if( rc != SQLITE_OK ){
           printf("SQL error: %s\n", zErrMsg);
           sqlite3_free(zErrMsg);
         }
 
-        //if nameCheckFlag is 0, the callback function is not executed, the username is incorrect
+        //If nameCheckFlag is 0, the callback function is not executed, the username is incorrect
         if(!nameCheckFlag){
             printf("%s\n", makeJSON("Incorrect Username!", "", ""));
         }else{

@@ -1,4 +1,5 @@
-#include "../model/session.h"
+#include "../common/common.h"
+#include "../common/APP.h"
 
 void renderPage(char* fileName){
     printf("Content-type:text/html\n\n");
@@ -32,28 +33,12 @@ int main(void){
     sqlite3* db;
     int  rc;
 
-	char* input = (char*)malloc(100);
-    char* method;
-
-    method = getenv("REQUEST_METHOD");
-    input = getCgiData(stdin, method);
-    printf("input=%s\n", input);
-
-    int user_accessIDLen = getCharPos(input, "&", 1) - getCharPos(input, "=", 1) - 1;
-    char user_accessID[100] = {0};
-    strncpy(user_accessID, getCharPos(input, "=", 1), user_accessIDLen);
-
-    char* token = getCharPos(input, "=", 2);
-
-    printf("%s   ", user_accessID);
-    printf("%s   ", token);
-
     SessionCheckFun renderHomePage;
     renderHomePage.func = renderHomePageFun;
     renderHomePage.argc = 1;
     renderHomePage.argv = (char**)malloc(1);
-    renderHomePage.argv[0] = (char*)malloc(sizeof("./home.html"));
-    renderHomePage.argv[0] = "./home.html";
+    renderHomePage.argv[0] = (char*)malloc(sizeof("./index.html"));
+    renderHomePage.argv[0] = "./index.html";
 
     SessionCheckFun renderLoginPage;
     renderLoginPage.func = renderLoginPageFun;
@@ -61,6 +46,36 @@ int main(void){
     renderLoginPage.argv = (char**)malloc(1);
     renderLoginPage.argv[0] = (char*)malloc(sizeof("../index.html"));
     renderLoginPage.argv[0] = "../index.html";
+
+	char* input = (char*)malloc(100);
+    char* method;
+
+    method = getenv("REQUEST_METHOD");
+    input = getCgiData(stdin, method);
+    
+    int status, cflags = REG_EXTENDED;  
+    regmatch_t pmatch[1];  
+    const size_t nmatch = 1;  
+    regex_t reg;  
+    const char * pattern = "id=([0-9]+)&token=(\\S+)$";
+    regcomp(&reg,pattern,cflags);
+    status = regexec(&reg, input, nmatch, pmatch, 0);
+    if(status == REG_NOMATCH) {
+        renderPage("../index.html");
+        printf("No match\n");
+        free(input);
+        free(renderHomePage.argv[0]);
+        free(renderHomePage.argv);
+        free(renderLoginPage.argv[0]);
+        free(renderLoginPage.argv);
+        exit(1);
+    }
+
+    int user_accessIDLen = getCharPos(input, "&", 1) - getCharPos(input, "=", 1) - 1;
+    char user_accessID[100] = {0};
+    strncpy(user_accessID, getCharPos(input, "=", 1), user_accessIDLen);
+
+    char* token = getCharPos(input, "=", 2);
 
     //sessionCheck(renderHomePage, renderLoginPage);
     rc = sqlite3_open("./model/netgap.db", &db);
@@ -71,6 +86,8 @@ int main(void){
         free(input);
         free(renderHomePage.argv[0]);
         free(renderHomePage.argv);
+        free(renderLoginPage.argv[0]);
+        free(renderLoginPage.argv);
         exit(1);
     }
 
@@ -79,5 +96,8 @@ int main(void){
     free(input);
     free(renderHomePage.argv[0]);
     free(renderHomePage.argv);
+    free(renderLoginPage.argv[0]);
+    free(renderLoginPage.argv);
 	return 0;
 }
+

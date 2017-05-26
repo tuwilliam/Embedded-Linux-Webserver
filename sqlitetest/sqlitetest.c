@@ -1,7 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <sqlite3.h> 
-#include <string.h>
+#include "../common/common.h"
+#include "../common/APP.h"
 
 static int callback(void *NotUsed, int argc, char **argv, char **azColusername){
    int i;

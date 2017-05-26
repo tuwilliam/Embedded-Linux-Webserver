@@ -1,7 +1,16 @@
 #include "session.h"
 
+/*Flag indicates if table session have the user_access_id & token*/
 char sessionCheckFlag = 0;
 
+/*
+*If find user_access_id & token in table session, enter callback, update session ID
+*@parameter pwd is the token string need to be updated
+*@parameter argc is the variable number
+*@parameter argv is the variable array(session_id, token, user_access_id, time)
+*@parameter azColusername is the variable name array("ID", "token", "user_access_id","time")
+*@author SUN ZHOGNJIAN
+*/
 static int sessionCheckCallback(SessionCheckFun* successFuncInCB, int argc, char **argv, char **azColName){
     sessionCheckFlag = 1;
     successFuncInCB -> func(successFuncInCB -> argc, successFuncInCB -> argv);

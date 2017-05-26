@@ -1,11 +1,11 @@
 SYSROOTPATH ?=/home/jay/work/31452/rootfs
 CFLAGS = -lsqlite3 -L/home/jay/work/sqlite-arm/lib -I/home/jay/work/sqlite-arm/include \
 		-march=armv7-a -mfloat-abi=hard -mfpu=neon -mtune=cortex-a9 --sysroot=${SYSROOTPATH}
-TARGET = view
+TARGET = regextest
 INCLUDE = ../common
 MODEL = ../model
 
 $(TARGET): %:%.c
-	$(CROSS_COMPILE)gcc -o $(TARGET) $< $(INCLUDE)/*.c $(MODEL)/*.c $(CFLAGS)
+	$(CROSS_COMPILE)gcc -o $(TARGET) $< $(CFLAGS)
 clean:
 	rm -f $(TARGET)

@@ -1,11 +1,18 @@
 /*
-  every library is here
+  Every library is here
 */
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include "cJSON.h"
 #include "sqlite3.h"
+#include <sys/types.h>
+#include <errno.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <termios.h>
+#include <regex.h>
 
 /* Returns the string that web front-end to web back-end */
 char* getCgiData(FILE* fp, char* method);

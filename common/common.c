@@ -1,5 +1,12 @@
 #include "common.h"
 
+/**
+*Get cgi content from web front-end
+*@parameter fp is the standard input, it's a file handle
+*@parameter method is the cgi method from web front-end
+*@return the cgi content string
+*@author SUN ZHOGNJIAN
+*/
 char* getCgiData(FILE* fp, char* method){
 	char* input;
 	int len;
