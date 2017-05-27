@@ -98,10 +98,10 @@ void checkUserSession(char* user_access_id, sqlite3* db){
     char* sql = (char*)malloc(100);
     memset(sql, 0, 100);
 
-    //make a random 8byte number as token string
+    //Make a random 8byte number as token string
     char tokenStr[8];
     makeToken(tokenStr);
-    //check if the user_access_id is in table session
+    //Check if the user_access_id is in table session
     strcat(sql, "SELECT * FROM session WHERE user_access_id=");
     strcat(sql, user_access_id);
     strcat(sql, ";");
@@ -112,15 +112,15 @@ void checkUserSession(char* user_access_id, sqlite3* db){
       printf("session Table error: %s\n", zErrMsg);
       sqlite3_free(zErrMsg);
     }
-    //the user_id is not in the session table, this is the first time user login
+    //The user_id is not in the session table, this is the first time user login
     if(!checkUserSessionFlag){
-        //make user session in the session table
+        //Make user session in the session table
         makeSession(user_access_id, tokenStr, db);
-        //return log status, token string, user_id to web front-end
+        //Return log status, token string, user_id to web front-end
         printf("%s\n", makeJSON("success", tokenStr, user_access_id));
     }
     else{
-        //reset flag
+        //Reset flag
         checkUserSessionFlag = 0;
     }
     free(sql);

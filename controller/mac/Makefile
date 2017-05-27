@@ -6,6 +6,6 @@ INCLUDE = ../../common
 DEPENDENT = ../../uart/uart.c
 
 $(TARGET): %:%.c
-	$(CROSS_COMPILE)gcc -o $(TARGET) $<  $(INCLUDE)/*.c $(DEPENDENT) $(CFLAGS)
+	$(CROSS_COMPILE)gcc -o $(TARGET) ./*.c  $(INCLUDE)/*.c $(DEPENDENT) $(CFLAGS)
 clean:
 	rm -f $(TARGET)

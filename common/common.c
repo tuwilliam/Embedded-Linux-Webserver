@@ -63,3 +63,18 @@ char* getCharPos(char* scr, char* search, int pos){
 
 	return temp;
 }
+
+/*
+*If find flag in table switch
+*@parameter switchFlag is the flag index, check it in variable array
+*@parameter argc is the variable number
+*@parameter argv is the variable array(ID, MAC_DA, MAC_SA, IPv4, IP_PROTOCOL, IP_SA, IP_DA, Port_S, Port_D, UDP, TCP, ARP, ICMP, SIP, NAT)
+*@parameter azColusername is the variable name array
+*@author SUN ZHOGNJIAN
+*/
+int getSwitchCallback(void *switchFlag, int argc, char **argv, char **azColName)
+{
+    //Print switch flag to web       
+    printf("%s,", argv[atoi(switchFlag)]);
+    return 0;
+}
