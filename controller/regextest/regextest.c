@@ -1,5 +1,5 @@
-#include "../common/common.h"
-#include "../common/APP.h"
+#include "../../common/common.h"
+#include "../../common/APP.h"
 
 int main(int argc,char** argv)  
 {  

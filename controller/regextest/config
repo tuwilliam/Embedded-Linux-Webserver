@@ -1,7 +1,7 @@
-cp /mnt/hgfs/share/code/uart/uarttest.c .
+cp /mnt/hgfs/share/code/model/regextest/regextest.c .
 #source /home/jay/work/myimx6_3035_build_env
 source /home/jay/my-imx-3.14/03_tools/gcc-linaro-arm-linux-gnueabihf-492-env
 make clean
 make
-cp uarttest /mnt/hgfs/share
-scp uarttest root@192.168.1.50:/var/www/cgi-bin
+cp regextest /mnt/hgfs/share
+scp regextest root@192.168.1.50:/var/www/cgi-bin/model

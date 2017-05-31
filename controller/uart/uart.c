@@ -73,7 +73,7 @@ switch( nSpeed )
     printf("com set error");
     return -1;
   }
-  printf("set done!\n");
+  //printf("set done!\n");
   return 0;
 }
 
@@ -87,8 +87,8 @@ int open_port(int fd,int comport)
       printf("Can't Open Serial Port");
       return(-1);
     }
-    else 
-      printf("open ttymxc0 .....\n");
+    else ;
+      //printf("open ttymxc0 .....\n");
   }
   else if(comport==2)
   { fd = open( "/dev/ttymxc1", O_RDWR|O_NOCTTY|O_NDELAY);
@@ -96,8 +96,8 @@ int open_port(int fd,int comport)
       printf("Can't Open Serial Port");
       return(-1);
     }
-    else 
-      printf("open ttymxc1 .....\n");
+    else ; 
+      //printf("open ttymxc1 .....\n");
   }
   else if (comport==3)
   {
@@ -106,8 +106,8 @@ int open_port(int fd,int comport)
       printf("Can't Open Serial Port");
       return(-1);
     }
-    else 
-      printf("open ttymxc2 .....\n");
+    else ;
+      //printf("open ttymxc2 .....\n");
   }
   else if (comport==4)
   {
@@ -116,8 +116,8 @@ int open_port(int fd,int comport)
       printf("Can't Open Serial Port");
       return(-1);
     }
-    else 
-      printf("open ttymxc3 .....\n");
+    else ;
+      //printf("open ttymxc3 .....\n");
   }
   else if (comport==5)
   {
@@ -126,18 +126,18 @@ int open_port(int fd,int comport)
       printf("Can't Open Serial Port");
       return(-1);
     }
-    else 
-      printf("open ttymxc4.....\n");
+    else ;
+      //printf("open ttymxc4.....\n");
   }
 
   if(fcntl(fd, F_SETFL, 0)<0)
     printf("fcntl failed!\n");
   else
-    printf("fcntl=%d\n",fcntl(fd, F_SETFL,0));
+    //printf("fcntl=%d\n",fcntl(fd, F_SETFL,0));
   if(isatty(STDIN_FILENO)==0)
     printf("standard input is not a terminal device\n");
-  else
-    printf("isatty success!\n");
-  printf("fd-open=%d\n",fd);
+  else ;
+    //printf("isatty success!\n");
+  //printf("fd-open=%d\n",fd);
   return fd;
 }

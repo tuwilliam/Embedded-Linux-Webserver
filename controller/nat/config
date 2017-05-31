@@ -1,7 +1,7 @@
-cp /mnt/hgfs/share/code/regextest/regextest.c .
 #source /home/jay/work/myimx6_3035_build_env
 source /home/jay/my-imx-3.14/03_tools/gcc-linaro-arm-linux-gnueabihf-492-env
+cp -f /mnt/hgfs/share/code/controller/nat/nat.c .
 make clean
 make
-cp regextest /mnt/hgfs/share
-scp regextest root@192.168.1.50:/var/www/cgi-bin/model
+cp mac /mnt/hgfs/share
+

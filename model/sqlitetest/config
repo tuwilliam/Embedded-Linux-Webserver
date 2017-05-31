@@ -1,6 +1,6 @@
 #source /home/jay/work/myimx6_3035_build_env
 source /home/jay/my-imx-3.14/03_tools/gcc-linaro-arm-linux-gnueabihf-492-env
-cp -f /mnt/hgfs/share/code/sqlitetest/sqlitetest.c .
+cp -f /mnt/hgfs/share/code/model/sqlitetest/sqlitetest.c .
 make clean
 make
 cp sqlitetest /mnt/hgfs/share

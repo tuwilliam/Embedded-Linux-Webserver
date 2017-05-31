@@ -9,8 +9,8 @@ void renderPage(char* fileName){
     int len=ftell(pFile); //获取文件长度
     pBuf = (char*)malloc(len+1); //定义数组长度
     rewind(pFile); //把指针移动到文件开头 因为我们一开始把指针移动到结尾，如果不移动回来 会出错
-    fread(pBuf,1,len,pFile); //读文件
-    pBuf[len]=0; //把读到的文件最后一位 写为0 要不然系统会一直寻找到0后才结束
+    fread(pBuf,1,len - 1,pFile); //读文件
+    //pBuf[len]=0; //把读到的文件最后一位 写为0 要不然系统会一直寻找到0后才结束
     fclose(pFile); // 关闭文件
     printf("%s",pBuf);
     free(pBuf);

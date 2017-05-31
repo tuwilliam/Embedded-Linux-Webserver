@@ -1,5 +1,5 @@
-#include "../common/common.h"
-#include "../common/APP.h"
+#include "../../common/common.h"
+#include "../../common/APP.h"
 
 int main(int argc, char** argv)
 {
@@ -8,7 +8,7 @@ int main(int argc, char** argv)
 
   //printf("Content-type:text/html\n\n");
 
-  FILE *pFile=fopen("cmd.txt","r");
+  FILE *pFile=fopen("../model/cmd.txt","r");
   char fileBuf[100];  
   char IPstr[13] = {1,0};
   char strBuf[10];

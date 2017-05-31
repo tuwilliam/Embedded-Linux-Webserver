@@ -60,7 +60,7 @@ int main(void)
     //Get uri sub string after the fourth "/"
     char* subRouter = getCharPos(uri, "/", 4);
 
-    rc = sqlite3_open("../model/netgap.db", &db);
+    int rc = sqlite3_open("../model/netgap.db", &db);
     //Error when open DB
     if(rc){
         printf("Can't open database: %s\n", sqlite3_errmsg(db));

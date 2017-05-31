@@ -6,7 +6,7 @@
 *Find mac flag in table switch
 *@author SUN ZHOGNJIAN
 */
-void getMacSwitch(){
+void getNatSwitch(){
 
     int  rc;
     char* sql = malloc(100);
@@ -14,7 +14,7 @@ void getMacSwitch(){
     strcat(sql, "SELECT * FROM  switch;");
     char* zErrMsg = 0;
 
-    rc = sqlite3_exec(db, sql, getSwitchCallback, MAC_SA_Flag, &zErrMsg);
+    rc = sqlite3_exec(db, sql, getSwitchCallback, NAT_Flag, &zErrMsg);
     //When sql format is incorrect
     if( rc != SQLITE_OK ){
       printf("SQL error: %s\n", zErrMsg);
@@ -31,7 +31,7 @@ void getMacSwitch(){
 *@parameter azColusername is the variable name array
 *@author SUN ZHOGNJIAN
 */
-static int setMacSwitchCallback(void *NotUsed, int argc, char **argv, char **azColusername){
+static int setNatSwitchCallback(void *NotUsed, int argc, char **argv, char **azColusername){
    
    int i;
    char switchStr[13] = {1, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0,  0};
@@ -61,7 +61,6 @@ static int setMacSwitchCallback(void *NotUsed, int argc, char **argv, char **azC
         printf("set_opt error");
         return;
     }
-    printf("fd=%d\n",fd);
 
     write(fd,switchStr,13);
 
@@ -74,7 +73,7 @@ static int setMacSwitchCallback(void *NotUsed, int argc, char **argv, char **azC
 *Set mac flag in table switch
 *@author SUN ZHOGNJIAN
 */
-void setMacSwitch(char* row, char* state){
+void setNatSwitch(char* state){
 
     int rc;
     char* zErrMsg = 0;
@@ -83,19 +82,17 @@ void setMacSwitch(char* row, char* state){
     memset(sql, 0, 100);
 
     //update switch according to row ID
-    strcat(sql, "UPDATE switch SET MAC_SA=\'");
+    strcat(sql, "UPDATE switch SET NAT=\'");
     if(strcmp(state, "true")==0){
         strcat(sql, "1");
     }else if(strcmp(state, "false")==0){
         strcat(sql, "0");
     }
     
-    strcat(sql, "\' WHERE ID=");
-    strcat(sql, row);
-    strcat(sql, ";");
+    strcat(sql, "\' WHERE ID IN (1,2);");
     strcat(sql, "SELECT * FROM  switch;");
-
-    rc = sqlite3_exec(db, sql, setMacSwitchCallback, 0, &zErrMsg);
+    printf("%s   ", sql);
+    rc = sqlite3_exec(db, sql, setNatSwitchCallback, 0, &zErrMsg);
     //Access database error
     if( rc != SQLITE_OK ){
         printf("updateSwitch error: %s\n", zErrMsg);
@@ -110,7 +107,7 @@ void setMacSwitch(char* row, char* state){
 *Set mac flag in table switch
 *@author SUN ZHOGNJIAN
 */
-cJSON* makeMacJSON(char* id, char* eth , char* addr, char* mac){
+cJSON* makeNatJSON(char* id, char* eth , char* addr, char* ipsStr, char* ipdStr){
     cJSON* pJSON = NULL;
 
     pJSON = cJSON_CreateObject();
@@ -121,13 +118,14 @@ cJSON* makeMacJSON(char* id, char* eth , char* addr, char* mac){
     cJSON_AddStringToObject(pJSON, "id", id);
     cJSON_AddStringToObject(pJSON, "eth", eth);
     cJSON_AddStringToObject(pJSON, "addr", addr);
-    cJSON_AddStringToObject(pJSON, "mac", mac);
+    cJSON_AddStringToObject(pJSON, "ips", ipsStr);
+    cJSON_AddStringToObject(pJSON, "ipd", ipdStr);
 
     return pJSON;
 }
 
 
-cJSON* objects[32];
+cJSON* objects[16];
 int jSON_Index = 0;
 
 /*
@@ -138,23 +136,34 @@ int jSON_Index = 0;
 *@parameter azColusername is the variable name array
 *@author SUN ZHOGNJIAN
 */
-int getMacCallback(void *Notused, int argc, char **argv, char **azColName){   
+int getNatCallback(void *Notused, int argc, char **argv, char **azColName){   
 
     int i;
-    char macStr[18];
-    memset(macStr, 0 ,18);
-    for(i = 0; i < 5; i++){
-        strcat(macStr, argv[i+3]);
-        strcat(macStr, "-");
-    }
-    strcat(macStr, argv[8]);
-    objects[jSON_Index++] = makeMacJSON(argv[0], argv[1], argv[2], macStr);
+    char ipsStr[16];
+    char ipdStr[16];
 
-    if(jSON_Index == 32){
+    memset(ipsStr, 0 ,18);
+    memset(ipdStr, 0 ,18);
+
+    for(i = 3; i < 6; i++){
+        strcat(ipsStr, argv[i]);
+        strcat(ipsStr, ".");
+    }
+    strcat(ipsStr, argv[6]);
+
+    for(i = 7; i < 10; i++){
+        strcat(ipdStr, argv[i]);
+        strcat(ipdStr, ".");
+    }
+    strcat(ipdStr, argv[10]);
+
+    objects[jSON_Index++] = makeNatJSON(argv[0], argv[1], argv[2], ipsStr, ipdStr);
+
+    if(jSON_Index == 16){
         int i;
         cJSON *prev;
         cJSON *root = cJSON_CreateArray();
-        for (i = 0; i < 32; i++)
+        for (i = 0; i < 16; i++)
         {
             if (!i)
             {
@@ -173,15 +182,16 @@ int getMacCallback(void *Notused, int argc, char **argv, char **azColName){
     return 0;
 }
 
-void getMac(){
+void getNat(){
 
     int  rc;
     char* sql = malloc(100);
     memset(sql, 0, 100);
-    strcat(sql, "SELECT * FROM  mac;");
+    strcat(sql, "SELECT * FROM nat limit 0,8; SELECT * FROM nat limit 16,8;");
+
     char* zErrMsg = 0;
 
-    rc = sqlite3_exec(db, sql, getMacCallback, 0, &zErrMsg);
+    rc = sqlite3_exec(db, sql, getNatCallback, 0, &zErrMsg);
     //When sql format is incorrect
     if( rc != SQLITE_OK ){
       printf("SQL error: %s\n", zErrMsg);
@@ -191,9 +201,8 @@ void getMac(){
     free(sql);
 }
 
-
-void getMacJSON(char* input, char* id, char* eth, char* addr, char* mac_5, char* mac_4, char* mac_3, char* mac_2, char* mac_1, char* mac_0){
-    cJSON *json , *idJSON , *ethJSON , *addrJSON , *mac_5JSON , *mac_4JSON , *mac_3JSON , *mac_2JSON , *mac_1JSON , *mac_0JSON; 
+void getNatJSON(char* input, char* id, char* eth, char* addr, char* SIP_3, char* SIP_2, char* SIP_1, char* SIP_0, char* DIP_3, char* DIP_2, char* DIP_1, char* DIP_0){
+    cJSON *json , *idJSON , *ethJSON , *addrJSON , *SIP_3JSON , *SIP_2JSON , *SIP_1JSON , *SIP_0JSON , *DIP_3JSON , *DIP_2JSON, *DIP_1JSON, *DIP_0JSON; 
     json = cJSON_Parse(input);  
 
     if (!json){  
@@ -207,42 +216,44 @@ void getMacJSON(char* input, char* id, char* eth, char* addr, char* mac_5, char*
         strcpy(eth,ethJSON -> valuestring);
         addrJSON = cJSON_GetObjectItem( json , "addr");  
         strcpy(addr,addrJSON -> valuestring);
-        mac_5JSON = cJSON_GetObjectItem( json , "mac_5");  
-        strcpy(mac_5,mac_5JSON -> valuestring);
-        mac_4JSON = cJSON_GetObjectItem( json , "mac_4");  
-        strcpy(mac_4,mac_4JSON -> valuestring);
-        mac_3JSON = cJSON_GetObjectItem( json , "mac_3");  
-        strcpy(mac_3,mac_3JSON -> valuestring);
-        mac_2JSON = cJSON_GetObjectItem( json , "mac_2");  
-        strcpy(mac_2,mac_2JSON -> valuestring);
-        mac_1JSON = cJSON_GetObjectItem( json , "mac_1");  
-        strcpy(mac_1,mac_1JSON -> valuestring);
-        mac_0JSON = cJSON_GetObjectItem( json , "mac_0");  
-        strcpy(mac_0,mac_0JSON -> valuestring);
+        SIP_3JSON = cJSON_GetObjectItem( json , "SIP_3");  
+        strcpy(SIP_3,SIP_3JSON -> valuestring);
+        SIP_2JSON = cJSON_GetObjectItem( json , "SIP_2");  
+        strcpy(SIP_2,SIP_2JSON -> valuestring);
+        SIP_1JSON = cJSON_GetObjectItem( json , "SIP_1");  
+        strcpy(SIP_1,SIP_1JSON -> valuestring);
+        SIP_0JSON = cJSON_GetObjectItem( json , "SIP_0");  
+        strcpy(SIP_0,SIP_0JSON -> valuestring);
+        DIP_3JSON = cJSON_GetObjectItem( json , "DIP_3");  
+        strcpy(DIP_3,DIP_3JSON -> valuestring);
+        DIP_2JSON = cJSON_GetObjectItem( json , "DIP_2"); 
+        strcpy(DIP_2,DIP_2JSON -> valuestring);
+        DIP_1JSON = cJSON_GetObjectItem( json , "DIP_1");
+        strcpy(DIP_1,DIP_1JSON -> valuestring);
+        DIP_0JSON = cJSON_GetObjectItem( json , "DIP_0"); 
+        strcpy(DIP_0,DIP_0JSON -> valuestring);
         cJSON_Delete(json);  
     }  
 }
 
-int setMacRowCallback(void* NotUsed, int argc, char **argv, char **azColusername){
-   printf("setMacRowCallback   ");
-   int i;
-   char* stopstring;
-   char macRowStr[13] = {1, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0,  0};
+int setNatRowCallback(void* NotUsed, int argc, char **argv, char **azColusername){
+    printf("setMacRowCallback   ");
+    int i;
+    char* stopstring;
+    char macRowStr[13] = {1, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0,  0};
 
-   for(i = 0; i < 9; i++){
-    switch(i){
-        case 0: break;
-        case 1: macRowStr[i] = 0;
-                break;
-        case 2: macRowStr[i] = (int)strtol(argv[i], &stopstring, 10);
-                break;
-        default: macRowStr[i] = (int)strtol(argv[i], &stopstring, 16);
-                break;
+    for(i = 0; i < argc; i++){
+        switch(i){
+            case 0: break;
+            case 1: macRowStr[i] = 0;
+                    break;
+            default: macRowStr[i] = (int)strtol(argv[i], &stopstring, 10);
+                    break;
 
+        }
     }
-   }
 
-   int fd;
+    int fd;
     if((fd=open_port(fd,3))<0){
         printf("open_port error");
         return;
@@ -260,11 +271,11 @@ int setMacRowCallback(void* NotUsed, int argc, char **argv, char **azColusername
     write(fd,macRowStr,13);
 
     close(fd);
-  
-   return 0;
+
+    return 0;
 }
 
-void setMacRow(char* id, char* eth, char* addr, char* mac_5, char* mac_4, char* mac_3, char* mac_2, char* mac_1, char* mac_0){
+void setNatRow(char* id, char* eth, char* addr, char* SIP_3, char* SIP_2, char* SIP_1, char* SIP_0, char* DIP_3, char* DIP_2, char* DIP_1, char* DIP_0){
 
     int rc;
     char* zErrMsg = 0;
@@ -273,31 +284,35 @@ void setMacRow(char* id, char* eth, char* addr, char* mac_5, char* mac_4, char* 
     memset(sql, 0, 200);
 
     //update switch according to row ID
-    strcat(sql, "UPDATE mac SET mac_5=\'");
-    strcat(sql, mac_5);
-    strcat(sql, "\' , mac_4=\'");
-    strcat(sql, mac_4);
-    strcat(sql, "\' , mac_3=\'");
-    strcat(sql, mac_3);
-    strcat(sql, "\' , mac_2=\'");
-    strcat(sql, mac_2);
-    strcat(sql, "\' , mac_1=\'");
-    strcat(sql, mac_1);
-    strcat(sql, "\' , mac_0=\'");
-    strcat(sql, mac_0);
+    strcat(sql, "UPDATE nat SET SIP_3=\'");
+    strcat(sql, SIP_3);
+    strcat(sql, "\' , SIP_2=\'");
+    strcat(sql, SIP_2);
+    strcat(sql, "\' , SIP_1=\'");
+    strcat(sql, SIP_1);
+    strcat(sql, "\' , SIP_0=\'");
+    strcat(sql, SIP_0);
+    strcat(sql, "\' , DIP_3=\'");
+    strcat(sql, DIP_3);
+    strcat(sql, "\' , DIP_2=\'");
+    strcat(sql, DIP_2);
+    strcat(sql, "\' , DIP_1=\'");
+    strcat(sql, DIP_1);
+    strcat(sql, "\' , DIP_0=\'");
+    strcat(sql, DIP_0);
     strcat(sql, "\' WHERE addr=\'");
     strcat(sql, addr);
     strcat(sql, "\';");
-    strcat(sql, "SELECT * FROM  mac WHERE addr = \'");
+    strcat(sql, "SELECT * FROM  nat WHERE addr = \'");
     strcat(sql, addr);
     strcat(sql, "\';");
 
     printf("%s  ", sql);
 
-    rc = sqlite3_exec(db, sql, setMacRowCallback, 0, &zErrMsg);
+    rc = sqlite3_exec(db, sql, setNatRowCallback, 0, &zErrMsg);
     //Access database error
     if( rc != SQLITE_OK ){
-        printf("update mac error: %s\n", zErrMsg);
+        printf("update nat error: %s\n", zErrMsg);
         sqlite3_free(zErrMsg);
     }
     free(sql);

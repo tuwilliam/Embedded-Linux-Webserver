@@ -1,5 +1,5 @@
-#include "../common/common.h"
-#include "../common/APP.h"
+#include "../../common/common.h"
+#include "../../common/APP.h"
 
 static int callback(void *NotUsed, int argc, char **argv, char **azColusername){
    int i;
@@ -104,7 +104,7 @@ void tableCreate_switch(sqlite3* db){
    /* Execute SQL statement */
    rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
    if( rc != SQLITE_OK ){
-   fprintf(stderr, "session SQL creat error: %s\n", zErrMsg);
+   fprintf(stderr, "switch SQL creat error: %s\n", zErrMsg);
       sqlite3_free(zErrMsg);
    }else{
       fprintf(stdout, "Table switch created successfully\n");
@@ -133,10 +133,41 @@ void tableCreate_mac(sqlite3* db){
    /* Execute SQL statement */
    rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
    if( rc != SQLITE_OK ){
-   fprintf(stderr, "session SQL creat error: %s\n", zErrMsg);
+   fprintf(stderr, "mac SQL creat error: %s\n", zErrMsg);
       sqlite3_free(zErrMsg);
    }else{
       fprintf(stdout, "Table mac created successfully\n");
+   }
+   free(sql);
+   sql = NULL;
+}
+
+void tableCreate_nat(sqlite3* db){
+
+  int rc;
+  char* sql = malloc(500);
+  memset(sql, 0, 500);
+  char* zErrMsg = 0;
+  strcat(sql, "CREATE TABLE nat("  \
+         "ID INTEGER PRIMARY KEY     AUTOINCREMENT," \
+         "ETH            INT    NOT NULL," \
+         "ADDR           INT    NOT NULL," \
+         "SIP_3          INT    NOT NULL," \
+         "SIP_2          INT    NOT NULL," \
+         "SIP_1          INT    NOT NULL," \
+         "SIP_0          INT    NOT NULL," \
+         "DIP_3          INT    NOT NULL," \
+         "DIP_2          INT    NOT NULL," \
+         "DIP_1          INT    NOT NULL," \
+         "DIP_0          INT    NOT NULL);"); 
+         
+   /* Execute SQL statement */
+   rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+   if( rc != SQLITE_OK ){
+   fprintf(stderr, "nat SQL creat error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+   }else{
+      fprintf(stdout, "Table nat created successfully\n");
    }
    free(sql);
    sql = NULL;
@@ -216,8 +247,8 @@ void rowInsert_switch(sqlite3* db){
   sql = NULL;
 }
 
-char ADDR_IN[16][3] = {"32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47"};
-char ADDR_OUT[16][4] = {"160", "161", "162", "163", "164", "165", "166", "167", "168", "169", "170", "171", "172", "173", "174", "175"};
+char MAC_ADDR_IN[16][3] = {"32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47"};
+char MAC_ADDR_OUT[16][4] = {"160", "161", "162", "163", "164", "165", "166", "167", "168", "169", "170", "171", "172", "173", "174", "175"};
 
 void rowInsert_mac(sqlite3* db){
   
@@ -227,32 +258,76 @@ void rowInsert_mac(sqlite3* db){
   for(i = 0; i < 16; i++){
     memset(sql, 0, 1000);
     strcat(sql, "INSERT INTO mac (ETH, ADDR, MAC_5, MAC_4, MAC_3, MAC_2, MAC_1, MAC_0) VALUES (0, ");
-    strcat(sql, ADDR_IN[i]);
+    strcat(sql, MAC_ADDR_IN[i]);
     strcat(sql, ", 0, 0, 0, 0, 0, 0);");
     char* zErrMsg = 0;
     /* Execute SQL statement */
     rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg);
     if( rc != SQLITE_OK ){
-      fprintf(stderr, "switch SQL error: %s\n", zErrMsg);
+      fprintf(stderr, "mac SQL error: %s\n", zErrMsg);
       sqlite3_free(zErrMsg);
     }else{
-      fprintf(stdout, "switch Records Insert successfully\n");
+      fprintf(stdout, "mac Records Insert successfully\n");
     }
   }
 
   for(i = 0; i < 16; i++){
     memset(sql, 0, 1000);
     strcat(sql, "INSERT INTO mac (ETH, ADDR, MAC_5, MAC_4, MAC_3, MAC_2, MAC_1, MAC_0) VALUES (1, ");
-    strcat(sql, ADDR_OUT[i]);
+    strcat(sql, MAC_ADDR_OUT[i]);
     strcat(sql, ", 0, 0, 0, 0, 0, 0);");
     char* zErrMsg = 0;
     /* Execute SQL statement */
     rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg);
     if( rc != SQLITE_OK ){
-      fprintf(stderr, "switch SQL error: %s\n", zErrMsg);
+      fprintf(stderr, "mac SQL error: %s\n", zErrMsg);
       sqlite3_free(zErrMsg);
     }else{
-      fprintf(stdout, "switch Records Insert successfully\n");
+      fprintf(stdout, "mac Records Insert successfully\n");
+    }
+  }
+  
+  free(sql);
+  sql = NULL;
+}
+
+char NAT_ADDR_IN[16][4] = {"112", "113", "114", "115", "116", "117", "118", "119", "120", "121", "122", "123", "124", "125", "126", "127"};
+char NAT_ADDR_OUT[16][4] = {"240", "241", "242", "243", "244", "245", "246", "247", "248", "249", "250", "251", "252", "253", "254", "255"};
+
+void rowInsert_nat(sqlite3* db){
+  
+  int rc, i;
+  char* sql = malloc(1000);
+
+  for(i = 0; i < 16; i++){
+    memset(sql, 0, 1000);
+    strcat(sql, "INSERT INTO nat (ETH, ADDR, SIP_3, SIP_2, SIP_1, SIP_0, DIP_3, DIP_2, DIP_1, DIP_0) VALUES (0, ");
+    strcat(sql, NAT_ADDR_IN[i]);
+    strcat(sql, ", 0, 0, 0, 0, 0, 0, 0, 0);");
+    char* zErrMsg = 0;
+    /* Execute SQL statement */
+    rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg);
+    if( rc != SQLITE_OK ){
+      fprintf(stderr, "nat SQL error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+    }else{
+      fprintf(stdout, "nat Insert successfully\n");
+    }
+  }
+
+  for(i = 0; i < 16; i++){
+    memset(sql, 0, 1000);
+    strcat(sql, "INSERT INTO nat (ETH, ADDR, SIP_3, SIP_2, SIP_1, SIP_0, DIP_3, DIP_2, DIP_1, DIP_0) VALUES (1, ");
+    strcat(sql, NAT_ADDR_OUT[i]);
+    strcat(sql, ", 0, 0, 0, 0, 0, 0, 0, 0);");
+    char* zErrMsg = 0;
+    /* Execute SQL statement */
+    rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg);
+    if( rc != SQLITE_OK ){
+      fprintf(stderr, "nat SQL error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+    }else{
+      fprintf(stdout, "nat Insert successfully\n");
     }
   }
   
@@ -266,6 +341,7 @@ void tableInit(sqlite3* db){
     tableDrop(db, "session");
     tableDrop(db, "switch");
     tableDrop(db, "mac");
+    tableDrop(db, "nat");
 
     tableCreate_user_access(db);
     rowInsert_user_access(db);
@@ -278,6 +354,9 @@ void tableInit(sqlite3* db){
 
     tableCreate_mac(db);
     rowInsert_mac(db);
+
+    tableCreate_nat(db);
+    rowInsert_nat(db);
 }
 
 int main(int argc, char* argv[]){

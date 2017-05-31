@@ -1,0 +1,7 @@
+cp /mnt/hgfs/share/code/model/initfpga/initfpga.c .
+#source /home/jay/work/myimx6_3035_build_env
+source /home/jay/my-imx-3.14/03_tools/gcc-linaro-arm-linux-gnueabihf-492-env
+make clean
+make
+cp view /mnt/hgfs/share
+scp view root@192.168.1.50:/var/www/cgi-bin
