@@ -173,6 +173,32 @@ void tableCreate_nat(sqlite3* db){
    sql = NULL;
 }
 
+void tableCreate_port(sqlite3* db){
+
+  int rc;
+  char* sql = malloc(500);
+  memset(sql, 0, 500);
+  char* zErrMsg = 0;
+  strcat(sql, "CREATE TABLE port("  \
+         "ID INTEGER PRIMARY KEY     AUTOINCREMENT," \
+         "ETH            INT    NOT NULL," \
+         "ADDR           INT    NOT NULL," \
+         "PORT_H         INT    NOT NULL," \
+         "PORT_L         INT    NOT NULL," \
+         "PROTOCOL       INT    NOT NULL);"); 
+         
+   /* Execute SQL statement */
+   rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+   if( rc != SQLITE_OK ){
+   fprintf(stderr, "port SQL creat error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+   }else{
+      fprintf(stdout, "Table port created successfully\n");
+   }
+   free(sql);
+   sql = NULL;
+}
+
 void rowInsert_user_access(sqlite3* db){
   
   int rc;
@@ -335,6 +361,83 @@ void rowInsert_nat(sqlite3* db){
   sql = NULL;
 }
 
+char PORT_ADDR_IN_S[16][3] = {"80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95"};
+char PORT_ADDR_IN_D[16][4] = {"96", "97", "98", "99", "100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111"};
+char PORT_ADDR_OUT_S[16][4] = {"208", "209", "210", "211", "212", "213", "214", "215", "216", "217", "218", "219", "220", "221", "222", "223"};
+char PORT_ADDR_OUT_D[16][4] = {"224", "225", "226", "227", "228", "229", "230", "231", "232", "233", "234", "235", "236", "237", "238", "239"};
+
+void rowInsert_port(sqlite3* db){
+  
+  int rc, i;
+  char* sql = malloc(1000);
+
+  for(i = 0; i < 16; i++){
+    memset(sql, 0, 1000);
+    strcat(sql, "INSERT INTO port (ETH, ADDR, PORT_H, PORT_L, PROTOCOL) VALUES (0, ");
+    strcat(sql, PORT_ADDR_IN_S[i]);
+    strcat(sql, ", 0, 0, 0);");
+    char* zErrMsg = 0;
+    /* Execute SQL statement */
+    rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg);
+    if( rc != SQLITE_OK ){
+      fprintf(stderr, "port SQL error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+    }else{
+      fprintf(stdout, "port Insert successfully\n");
+    }
+  }
+
+  for(i = 0; i < 16; i++){
+    memset(sql, 0, 1000);
+    strcat(sql, "INSERT INTO port (ETH, ADDR, PORT_H, PORT_L, PROTOCOL) VALUES (0, ");
+    strcat(sql, PORT_ADDR_IN_D[i]);
+    strcat(sql, ", 0, 0, 0);");
+    char* zErrMsg = 0;
+    /* Execute SQL statement */
+    rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg);
+    if( rc != SQLITE_OK ){
+      fprintf(stderr, "port SQL error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+    }else{
+      fprintf(stdout, "port Insert successfully\n");
+    }
+  }
+
+  for(i = 0; i < 16; i++){
+    memset(sql, 0, 1000);
+    strcat(sql, "INSERT INTO port (ETH, ADDR, PORT_H, PORT_L, PROTOCOL) VALUES (1, ");
+    strcat(sql, PORT_ADDR_OUT_S[i]);
+    strcat(sql, ", 0, 0, 0);");
+    char* zErrMsg = 0;
+    /* Execute SQL statement */
+    rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg);
+    if( rc != SQLITE_OK ){
+      fprintf(stderr, "port SQL error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+    }else{
+      fprintf(stdout, "port Insert successfully\n");
+    }
+  }
+
+  for(i = 0; i < 16; i++){
+    memset(sql, 0, 1000);
+    strcat(sql, "INSERT INTO port (ETH, ADDR, PORT_H, PORT_L, PROTOCOL) VALUES (1, ");
+    strcat(sql, PORT_ADDR_OUT_D[i]);
+    strcat(sql, ", 0, 0, 0);");
+    char* zErrMsg = 0;
+    /* Execute SQL statement */
+    rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg);
+    if( rc != SQLITE_OK ){
+      fprintf(stderr, "port SQL error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+    }else{
+      fprintf(stdout, "port Insert successfully\n");
+    }
+  } 
+  free(sql);
+  sql = NULL;
+}
+
 void tableInit(sqlite3* db){
 
     tableDrop(db, "user_access");
@@ -342,6 +445,7 @@ void tableInit(sqlite3* db){
     tableDrop(db, "switch");
     tableDrop(db, "mac");
     tableDrop(db, "nat");
+    tableDrop(db, "port");
 
     tableCreate_user_access(db);
     rowInsert_user_access(db);
@@ -357,6 +461,9 @@ void tableInit(sqlite3* db){
 
     tableCreate_nat(db);
     rowInsert_nat(db);
+
+    tableCreate_port(db);
+    rowInsert_port(db);
 }
 
 int main(int argc, char* argv[]){
