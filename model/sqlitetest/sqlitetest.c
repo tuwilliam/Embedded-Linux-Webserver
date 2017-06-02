@@ -199,6 +199,33 @@ void tableCreate_port(sqlite3* db){
    sql = NULL;
 }
 
+void tableCreate_ip(sqlite3* db){
+
+  int rc;
+  char* sql = malloc(500);
+  memset(sql, 0, 500);
+  char* zErrMsg = 0;
+  strcat(sql, "CREATE TABLE ip("  \
+         "ID INTEGER PRIMARY KEY     AUTOINCREMENT," \
+         "ETH            INT    NOT NULL," \
+         "ADDR           INT    NOT NULL," \
+         "IP_3           INT    NOT NULL," \
+         "IP_2           INT    NOT NULL," \
+         "IP_1           INT    NOT NULL," \
+         "IP_0           INT    NOT NULL);"); 
+         
+   /* Execute SQL statement */
+   rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+   if( rc != SQLITE_OK ){
+   fprintf(stderr, "port SQL creat error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+   }else{
+      fprintf(stdout, "Table ip created successfully\n");
+   }
+   free(sql);
+   sql = NULL;
+}
+
 void rowInsert_user_access(sqlite3* db){
   
   int rc;
@@ -438,6 +465,50 @@ void rowInsert_port(sqlite3* db){
   sql = NULL;
 }
 
+char IP_ADDR_IN_S[16][3] = {"48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63"};
+char IP_ADDR_OUT_D[16][4] = {"192", "193", "194", "195", "196", "197", "198", "199", "200", "201", "202", "203", "204", "205", "206", "207"};
+
+void rowInsert_ip(sqlite3* db){
+  
+  int rc, i;
+  char* sql = malloc(1000);
+
+  for(i = 0; i < 16; i++){
+    memset(sql, 0, 1000);
+    strcat(sql, "INSERT INTO ip (ETH, ADDR, IP_3, IP_2, IP_1, IP_0) VALUES (0, ");
+    strcat(sql, IP_ADDR_IN_S[i]);
+    strcat(sql, ", 0, 0, 0, 0);");
+    char* zErrMsg = 0;
+    /* Execute SQL statement */
+    rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg);
+    if( rc != SQLITE_OK ){
+      fprintf(stderr, "ip SQL error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+    }else{
+      fprintf(stdout, "ip Insert successfully\n");
+    }
+  }
+
+  for(i = 0; i < 16; i++){
+    memset(sql, 0, 1000);
+    strcat(sql, "INSERT INTO ip (ETH, ADDR, IP_3, IP_2, IP_1, IP_0) VALUES (1, ");
+    strcat(sql, IP_ADDR_OUT_D[i]);
+    strcat(sql, ", 0, 0, 0, 0);");
+    char* zErrMsg = 0;
+    /* Execute SQL statement */
+    rc = sqlite3_exec(db, sql, 0, 0, &zErrMsg);
+    if( rc != SQLITE_OK ){
+      fprintf(stderr, "ip SQL error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+    }else{
+      fprintf(stdout, "ip Insert successfully\n");
+    }
+  }
+  
+  free(sql);
+  sql = NULL;
+}
+
 void tableInit(sqlite3* db){
 
     tableDrop(db, "user_access");
@@ -445,6 +516,7 @@ void tableInit(sqlite3* db){
     tableDrop(db, "switch");
     tableDrop(db, "mac");
     tableDrop(db, "nat");
+    tableDrop(db, "port");
     tableDrop(db, "port");
 
     tableCreate_user_access(db);
@@ -464,6 +536,9 @@ void tableInit(sqlite3* db){
 
     tableCreate_port(db);
     rowInsert_port(db);
+
+    tableCreate_ip(db);
+    rowInsert_ip(db);
 }
 
 int main(int argc, char* argv[]){

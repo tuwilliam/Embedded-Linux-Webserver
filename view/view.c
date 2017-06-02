@@ -33,6 +33,8 @@ int main(void){
     sqlite3* db;
     int  rc;
 
+    //system("/var/www/shell/remoteTimeAccepting.sh");
+
     SessionCheckFun renderHomePage;
     renderHomePage.func = renderHomePageFun;
     renderHomePage.argc = 1;

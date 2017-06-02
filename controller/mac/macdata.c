@@ -224,7 +224,7 @@ void getMacJSON(char* input, char* id, char* eth, char* addr, char* mac_5, char*
 }
 
 int setMacRowCallback(void* NotUsed, int argc, char **argv, char **azColusername){
-   printf("setMacRowCallback   ");
+
    int i;
    char* stopstring;
    char macRowStr[13] = {1, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0,  0};

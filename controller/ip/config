@@ -1,0 +1,7 @@
+#source /home/jay/work/myimx6_3035_build_env
+source /home/jay/my-imx-3.14/03_tools/gcc-linaro-arm-linux-gnueabihf-492-env
+cp -f /mnt/hgfs/share/code/controller/ip/ip.c .
+make clean
+make
+cp mac /mnt/hgfs/share
+

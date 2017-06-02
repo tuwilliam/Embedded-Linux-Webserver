@@ -13,6 +13,7 @@
 #include <unistd.h>
 #include <termios.h>
 #include <regex.h>
+#include <sys/poll.h>
 
 //Switch flags define
 #define MAC_DA_Flag         "1"

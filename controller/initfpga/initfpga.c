@@ -6,7 +6,8 @@ sqlite3* db;
 int switchFlag = 0;
 int macFlag = 0;
 int natFlag = 0;
-
+int portFlag = 0;
+int ipFlag = 0;
 /*
 *If set table switch successful
 *@parameter argc is the variable number
@@ -205,6 +206,131 @@ void setNatRow(){
     free(sql);
 }
 
+int setPortRowCallback(void* NotUsed, int argc, char **argv, char **azColusername){
+    //printf("setMacRowCallback   ");
+    portFlag = 1;
+    int i;
+    char* stopstring;
+    char portRowStr[13] = {1, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0,  0};
+
+    for(i = 0; i < argc; i++){
+        switch(i){
+            case 0: break;
+            case 1: portRowStr[i] = 0;
+                    break;
+            default: portRowStr[i] = (int)strtol(argv[i], &stopstring, 10);
+                    break;
+
+        }
+    }
+
+    int fd;
+    if((fd=open_port(fd,3))<0){
+        printf("open_port error");
+        return;
+    }
+    if((i=set_opt(fd,9600,8,'N',1))<0){
+        printf("set_opt error");
+        return;
+    }
+    //printf("fd=%d\n",fd);
+
+    for(i = 0; i < 13; i++){
+        printf("%d ", portRowStr[i]);
+    }
+
+    write(fd, portRowStr,13);
+    printf("\n");
+    close(fd);
+
+    return 0;
+}
+
+void setPortRow(){
+
+    int rc;
+    char* zErrMsg = 0;
+
+    char* sql = (char*)malloc(200);
+    memset(sql, 0, 200);
+
+    strcat(sql, "SELECT * FROM  Port;");
+
+    printf("%s\n", sql);
+
+    rc = sqlite3_exec(db, sql, setPortRowCallback, 0, &zErrMsg);
+    //Access database error
+    if( rc != SQLITE_OK ){
+        printf("set Port error: %s\n", zErrMsg);
+        sqlite3_free(zErrMsg);
+    }
+    free(sql);
+}
+
+
+int setIpRowCallback(void* NotUsed, int argc, char **argv, char **azColusername){
+    
+    ipFlag = 1;
+    int i;
+    char* stopstring;
+    char IpRowStr[13] = {1, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0,  0};
+
+    for(i = 0; i < argc; i++){
+        switch(i){
+            case 0: break;
+            case 1: IpRowStr[i] = 0;
+                    break;
+            default: IpRowStr[i] = (int)strtol(argv[i], &stopstring, 10);
+                    break;
+
+        }
+    }
+
+    int fd;
+    if((fd=open_port(fd,3))<0){
+        printf("open_port error");
+        return;
+    }
+    if((i=set_opt(fd,9600,8,'N',1))<0){
+        printf("set_opt error");
+        return;
+    }
+    
+
+    for(i = 0; i < 13; i++){
+        printf("%d ", IpRowStr[i]);
+    }
+
+    write(fd,IpRowStr,13);
+    printf("\n");
+
+    close(fd);
+
+    return 0;
+}
+
+void setIpRow(){
+
+    int rc;
+    char* zErrMsg = 0;
+
+    char* sql = (char*)malloc(100);
+    memset(sql, 0, 100);
+
+    strcat(sql, "SELECT * FROM  ip;");
+
+    printf("%s  ", sql);
+
+    rc = sqlite3_exec(db, sql, setIpRowCallback, 0, &zErrMsg);
+    //Access database error
+    if( rc != SQLITE_OK ){
+        printf("set Ip error: %s\n", zErrMsg);
+        sqlite3_free(zErrMsg);
+    }
+    free(sql);
+}
+
+
 int main(){
 
     char* zErrMsg = 0;
@@ -221,7 +347,9 @@ int main(){
     setSwitch();
     setMacRow();
     setNatRow();
+    setPortRow();
+    setIpRow();
 
-    while(!macFlag || !switchFlag || !natFlag);
+    while(!macFlag || !switchFlag || !natFlag || !portFlag || !ipFlag);
     printf("done\n");
 }

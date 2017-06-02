@@ -79,7 +79,7 @@ switch( nSpeed )
 
 int open_port(int fd,int comport)
 {
-  char *dev[]={"/dev/ttymxc0","/dev/ttymxc1","/dev/ttymxc2","/dev/ttymxc3","/dev/ttymxc4"};
+  //char *dev[]={"/dev/ttymxc0","/dev/ttymxc1","/dev/ttymxc2","/dev/ttymxc3","/dev/ttymxc4"};
   long vdisable;
   if (comport==1)
   { fd = open( "/dev/ttymxc0", O_RDWR|O_NOCTTY|O_NDELAY);
@@ -130,7 +130,7 @@ int open_port(int fd,int comport)
       //printf("open ttymxc4.....\n");
   }
 
-  if(fcntl(fd, F_SETFL, 0)<0)
+  if(fcntl(fd, F_SETFL, FNDELAY)<0)
     printf("fcntl failed!\n");
   else
     //printf("fcntl=%d\n",fcntl(fd, F_SETFL,0));

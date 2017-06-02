@@ -144,7 +144,7 @@ cJSON* makePortJSON(char* id, char* eth , char* addr, char* portStr, char* proto
 }
 
 
-cJSON* objects[16];
+cJSON* objects[32];
 int jSON_Index = 0;
 
 /*
@@ -246,7 +246,7 @@ void getPortJSON(char* input, char* id, char* eth, char* addr, char* port_h, cha
 }
 
 int setPortRowCallback(void* NotUsed, int argc, char **argv, char **azColusername){
-    //printf("setMacRowCallback   ");
+
     int i;
     char* stopstring;
     char portRowStr[13] = {1, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0,  0};
